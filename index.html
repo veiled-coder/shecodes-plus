@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="glass.css">
+    <title>Document</title>
+</head>
+<body>
+   
+    
+    
+    
+    <div class="container">
+        <form class="display" id="form--container">
+            <label for="Search" class="search--label">
+                <input type="text" id="Search" class="search-display" placeholder="enter a city  ...">
+            </label>
+            <div class="searches">
+                <input type="submit" value="search" class="search" id="search-btn">
+                <input type="submit" value="🤳" class="search location" id="myLocation">
+            </div>
+            <label class="toggle" for="Toggle">
+                <!-- any part of this label clicked on will check and uncheck the toggle--input -->
+                <input id="Toggle" type="checkbox" class="toggle--input" onclick="changeTheme()">
+                <div class="toggle--fill"></div>
+            </label>
+        </form>
+        <!-- content -->
+        <section class="weather-info">
+            <h1 id="city">LAGOS</h1>
+            <div class="date" id="date-text"></div>
+            <div class="temp-container">
+                <div class="temp">17</div>
+                <span class="cel"> &#8451;|</span>
+                <span class="fah">&#8457;</span>
+            </div>
+        </section>
+    
+        <!-- weather for next 7 dayss -->
+        <section class="days">
+            <h3 class="day--heading">Future weather</h3>
+            <div class="day day1">monday</div>
+            <div class="day day2">tuesday</div>
+            <div class="day day3">wednesday</div>
+            <div class="day day4">thursday</div>
+            <div class="day day5">friday</div>
+            <div class="day day6">saturday</div>
+            <div class="day day7">sunday</div>
+    
+        </section>
+    
+    </div>
+    
+    <script src="glass.js"></script>
+
+</body>
+</html>
