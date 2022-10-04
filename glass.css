@@ -7,11 +7,15 @@
 }
 :root,
 :root.light {
-  --body-bg--color1:  rgba(229, 160, 99, 0.66) 22.8%;
+  --body-bg--color1: rgba(229, 160, 99, 0.66) 22.8%;
   --body-bg--color2: rgb(219, 168, 139) 64.6%;
   --display-bg: rgba(190, 119, 56, 0.926);
   --direction: to top;
-  --direction--bg: linear-gradient(var(--direction),var(--body-bg--color1), var(--body-bg--color2));
+  --direction--bg: linear-gradient(
+    var(--direction),
+    var(--body-bg--color1),
+    var(--body-bg--color2)
+  );
 
   --blur: 5rem;
   --pseudoglass-bg: rgba(202, 103, 124, 0.83);
@@ -31,8 +35,10 @@
   --body-bg--color1: 112.1deg, rgba(77, 100, 174, 0.821) 11.4%;
   --body-bg--color2: rgb(171, 189, 248) 70.2%;
   --display-bg: rgb(178, 212, 242);
-  --direction--bg: linear-gradient(var(--body-bg--color1), var(--body-bg--color2));
-  
+  --direction--bg: linear-gradient(
+    var(--body-bg--color1),
+    var(--body-bg--color2)
+  );
 
   --blur: 7rem;
   --pseudoglass-bg: rgba(15, 114, 221, 0.83);
@@ -51,7 +57,7 @@ body {
   min-height: 100vh;
   width: 100%;
   background: var(--direction--bg);
-    background-size: cover;
+  background-size: cover;
   /* bg has to be fixed to allow for a continous flow of bg in the container */
   background-attachment: fixed;
   display: flex;
@@ -141,7 +147,6 @@ RULES
 
   text-align: center;
   font-size: 1rem;
-
 }
 .search-display::placeholder {
   color: var(--placeholder);
@@ -151,18 +156,17 @@ RULES
   border: 2px solid var(--search-radius);
   box-shadow: 0 0 3px 0 var(--search-shadow);
   background-color: var(--search-bg);
- padding-top:.4rem ;
+  padding-top: 0.4rem;
   font-size: 1rem;
   width: 50%;
 }
-.location{
-    width: 20%;
+.location {
+  width: 20%;
 }
 .searches {
   display: flex;
   width: 40%;
   justify-content: space-evenly;
-  
 }
 /* container and content MUS HAVE same BACKGROUND */
 /* theme buttons */
@@ -235,7 +239,6 @@ even when i did 18rem border radius */
   justify-content: center;
   background-color: var(--days);
   box-shadow: 0 0 0.1rem var(--box-shadow);
- 
 }
 .day {
   border-radius: 1rem;
@@ -254,26 +257,26 @@ even when i did 18rem border radius */
   padding-left: 5%;
   margin-top: 2%;
 }
-.temp{
-    font-size: 5vw;
+.temp {
+  font-size: 5vw;
 }
-.cel,.fah{
+.cel,
+.fah {
   cursor: pointer;
 }
-.temp-container{
+.temp-container {
   display: flex;
- 
 }
-@media(max-width:992px){
-    h1{
-        font-size: 8vw;
-    }
-    .temp{
-        font-size: 12vw;
-    }
-    .temp span{
-        font-size: 5vw;
-    }
+@media (max-width: 992px) {
+  h1 {
+    font-size: 8vw;
+  }
+  .temp {
+    font-size: 12vw;
+  }
+  .temp span {
+    font-size: 5vw;
+  }
 }
 @media (max-width: 768px) {
   .toggle {
@@ -282,7 +285,7 @@ even when i did 18rem border radius */
   .toggle--input:checked ~ .toggle--fill::after {
     transform: translateX(calc(var(--width) / 2));
   }
-  .search--label{
+  .search--label {
     width: 70%;
   }
 }
@@ -290,14 +293,9 @@ even when i did 18rem border radius */
   .future {
     font-size: 1.5rem;
   }
-  
-  
 }
-@media(max-width:450px){
-
-    .search{
-        font-size: .7rem;
-   
-    }
-   
+@media (max-width: 450px) {
+  .search {
+    font-size: 0.7rem;
+  }
 }

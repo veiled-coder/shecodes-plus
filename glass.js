@@ -14,8 +14,20 @@ form.addEventListener("submit", city);
 
 function city(e) {
   e.preventDefault();
+  //weather api
   cityName.innerHTML = searchDisplay.value;
-}
+  let apiKey = "c57ce4bd372d8c67eb7282dd25e41eae";
+  let country =searchDisplay.value ;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${country}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(results);
+
+  function results(response) {
+    console.log(response.data.main.temp);
+    temp.innerHTML = response.data.main.temp;
+  }
+
+  //for the time
 
 let day = new Date();
 let weekday = day.getDay();
@@ -52,4 +64,6 @@ function fahConvert() {
 }
 function celConvert() {
   temp.innerHTML = 17;
+}
+
 }
