@@ -1,33 +1,58 @@
 const toggleBtn = document.querySelector("#Toggle");
+let form = document.querySelector("#form--container");
+let searchDisplay = document.querySelector("#Search");
+let searchbtn = document.querySelector("#search-btn");
+
+let cityName = document.querySelector("h1");
+let temp = document.querySelector(".temp");
+let tempUnit = "metric";
+let apiKey = "c57ce4bd372d8c67eb7282dd25e41eae";
+let current = document.querySelector(".current-location");
+let humidity = document.querySelector(".humidity");
+let wind = document.querySelector(".wind");
+let action = document.querySelector(".action");
 
 function changeTheme() {
   let Body = document.documentElement;
   Body.className = toggleBtn.checked ? "dark" : "light";
 }
 
-let form = document.querySelector("#form--container");
-let searchDisplay = document.querySelector("#Search");
-let searchbtn = document.querySelector("#search-btn");
-let cityName = document.querySelector("h1");
+form.addEventListener("submit", weatherInfo);
 
-form.addEventListener("submit", city);
-
-function city(e) {
+function weatherInfo(e) {
   e.preventDefault();
-  //weather api
-  cityName.innerHTML = searchDisplay.value;
-  let apiKey = "c57ce4bd372d8c67eb7282dd25e41eae";
-  let country =searchDisplay.value ;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${country}&units=metric&appid=${apiKey}`;
-
+  let searchValue = searchDisplay.value;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=${tempUnit}&appid=${apiKey}`;
   axios.get(apiUrl).then(results);
-
   function results(response) {
-    console.log(response.data.main.temp);
+    console.log(response.data.weather[0].main);
     temp.innerHTML = response.data.main.temp;
+    cityName.innerHTML = searchValue;
+    humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+    wind.innerHTML = `Wind: ${response.data.wind.speed}km/hr`;
+    action.innerHTML = `${response.data.weather[0].main}`;
   }
+}
 
-  //for the time
+//current-location
+
+current.addEventListener("click", getCurrent);
+function getCurrent() {
+  navigator.geolocation.getCurrentPosition(myResponse);
+}
+function myResponse(location) {
+  let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=${tempUnit}&appid=${apiKey}`;
+  axios.get(apiUrlCurrent).then(currentResult);
+  function currentResult(response) {
+    console.log(response.data.main.temp);
+    cityName.innerHTML = `${response.data.name}`;
+    temp.innerHTML = ` ${response.data.main.temp}`;
+    humidity.innerHTML = `humidity: ${response.data.main.humidity}%`;
+    wind.innerHTML = `Wind: ${response.data.wind.speed}km/hr`;
+    action.innerHTML = `${response.data.weather[0].main}`;
+  }
+}
+//time
 
 let day = new Date();
 let weekday = day.getDay();
@@ -54,16 +79,12 @@ ${hour < 10 ? "0" + hour : hour}:${min < 10 ? "0" + min : min}`;
 let fah = document.querySelector(".fah");
 let cel = document.querySelector(".cel");
 
-let temp = document.querySelector(".temp");
+// fah.addEventListener("click", fahConvert);
+// cel.addEventListener("click", celConvert);
 
-fah.addEventListener("click", fahConvert);
-cel.addEventListener("click", celConvert);
-
-function fahConvert() {
-  temp.innerHTML = 66;
-}
-function celConvert() {
-  temp.innerHTML = 17;
-}
-
-}
+// function fahConvert() {
+//   tempUnit='imperial';
+// }
+// function celConvert() {
+//   tempUnit = 'metric';
+// }

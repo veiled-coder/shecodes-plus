@@ -1,3 +1,5 @@
+
+
 *,
 *::after,
 *::before {
@@ -159,9 +161,10 @@ RULES
   padding-top: 0.4rem;
   font-size: 1rem;
   width: 50%;
+  text-align: center;
 }
-.location {
-  width: 20%;
+.current-location {
+  width: 25%;
 }
 .searches {
   display: flex;
@@ -266,6 +269,14 @@ even when i did 18rem border radius */
 }
 .temp-container {
   display: flex;
+}
+/* weather decsription */
+.weather-description{
+  align-self: flex-end;
+
+  display: flex;
+  flex-direction: column;
+  margin-right: 10%;
 }
 @media (max-width: 992px) {
   h1 {

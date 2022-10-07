@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="glass.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/322a1124a5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="glass.css">
     <title>Document</title>
 </head>
 
@@ -15,11 +16,13 @@
     <div class="container">
         <form class="display" id="form--container">
             <label for="Search" class="search--label">
-                <input type="text" id="Search" class="search-display" placeholder="enter a city  ...">
+                <input type="text" id="Search" class="search-display" value="" placeholder="enter a city  ...">
             </label>
             <div class="searches">
-                <input type="submit" value="search" class="search" id="search-btn">
-                <input type="submit" value="🤳" class="search location" id="myLocation">
+                <button type="submit" class="search" id="search-btn">search</button>
+                <button class="search current-location" id="myLocation">
+                    <i class="fa-solid fa-location-question"></i>
+                </button>
             </div>
             <label class="toggle" for="Toggle">
                 <!-- any part of this label clicked on will check and uncheck the toggle--input -->
@@ -29,15 +32,21 @@
         </form>
         <!-- content -->
         <section class="weather-info">
-            <h1 id="city">LAGOS</h1>
+            <h1 id="city"></h1>
             <div class="date" id="date-text"></div>
+            <div class="action"></div>
             <div class="temp-container">
-                <div class="temp">17</div>
-                <span class="cel"> &#8451;|</span>
-                <span class="fah">&#8457;</span>
+                <div class="temp">?</div>
+                <span class="cel"> &#8451;</span>
+                <!-- <span class="fah">&#8457;</span> -->
             </div>
+            <p class="current-location-text"></p>
         </section>
 
+        <section class="weather-description">
+            <p class="humidity"></p>
+            <p class="wind"></p>
+        </section>
         <!-- weather for next 7 dayss -->
         <section class="days">
             <h3 class="day--heading">Future weather</h3>
