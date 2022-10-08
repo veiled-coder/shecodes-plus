@@ -34,7 +34,7 @@ function weatherInfo(e) {
 }
 function weatherDetails(response) {
   temp.innerHTML = Math.round(response.data.main.temp);
-  const countryName = response.data.sys.country.toLowerCase();
+  const countryName = response.data.sys.country;
   cityName.innerHTML = `${response.data.name}, ${countryName}`;
   console.log(response.data);
 
