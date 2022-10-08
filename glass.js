@@ -34,10 +34,13 @@ function weatherInfo(e) {
 }
 function weatherDetails(response) {
   temp.innerHTML = Math.round(response.data.main.temp);
-  cityName.innerHTML = response.data.name;
+  const countryName = response.data.sys.country.toLowerCase();
+  cityName.innerHTML = `${response.data.name}, ${countryName}`;
+  console.log(response.data);
+
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   wind.innerHTML = `Wind: ${response.data.wind.speed}km/hr`;
-  action.innerHTML = `${response.data.weather[0].main}`;
+  action.innerHTML = `${response.data.weather[0].description}`;
 }
 //current-location
 
