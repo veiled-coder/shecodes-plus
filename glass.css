@@ -1,5 +1,3 @@
-
-
 *,
 *::after,
 *::before {
@@ -7,11 +5,33 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 :root,
 :root.light {
-  --body-bg--color1: rgba(229, 160, 99, 0.66) 22.8%;
-  --body-bg--color2: rgb(219, 168, 139) 64.6%;
-  --display-bg: rgba(190, 119, 56, 0.926);
+  --body-bg--color1: 112.1deg, rgba(77, 100, 174, 0.821) 11.4%;
+  --body-bg--color2: rgb(171, 189, 248) 70.2%;
+  --display-bg: rgb(178, 212, 242);
+  --direction--bg: linear-gradient(
+    var(--body-bg--color1),
+    var(--body-bg--color2)
+  );
+
+  --blur: 50rem;
+  --pseudoglass-bg: rgba(15, 114, 221, 0.83);
+  --days: #b2d4f2;
+  --box-shadow: rgb(33, 2, 33);
+  --border: 5px dotted var(--display-bg);
+  --placeholder: rgb(74, 63, 63);
+  --search-shadow: rgba(74, 70, 70, 0.449);
+  --toggle-circle: #a17baa;
+
+  --search-radius: rgba(96, 115, 178, 0.821);
+
+  --search-bg: white;
+  --city: white;
+}
+:root.dark {
+  --display-bg: rgba(101, 27, 118, 0.926);
   --direction: to top;
   --direction--bg: linear-gradient(
     var(--direction),
@@ -21,8 +41,10 @@
 
   --blur: 5rem;
   --pseudoglass-bg: rgba(202, 103, 124, 0.83);
-  --toggle-circle: rgb(171, 189, 248);
-  --days: var(--search-bg);
+
+  --search-bg: rgba(244, 197, 235, 0.501);
+
+  --days: #a17baa;
   --box-shadow: rgba(25, 18, 25, 0.526);
   --border: none;
   --placeholder: rgb(99, 76, 80);
@@ -30,35 +52,13 @@
   --search-shadow: var(--box-shadow);
 
   --search-radius: white;
-  --search-bg: rgba(244, 197, 235, 0.501);
-  --city: white;
-}
-:root.dark {
-  --body-bg--color1: 112.1deg, rgba(77, 100, 174, 0.821) 11.4%;
-  --body-bg--color2: rgb(171, 189, 248) 70.2%;
-  --display-bg: rgb(178, 212, 242);
-  --direction--bg: linear-gradient(
-    var(--body-bg--color1),
-    var(--body-bg--color2)
-  );
-
-  --blur: 7rem;
-  --pseudoglass-bg: rgba(15, 114, 221, 0.83);
-  --days: white;
-  --box-shadow: rgb(33, 2, 33);
-  --border: 5px dotted var(--display-bg);
-  --placeholder: rgb(74, 63, 63);
-  --search-shadow: rgba(74, 70, 70, 0.449);
-
-  --search-radius: rgba(96, 115, 178, 0.821);
-
-  --search-bg: white;
   --city: white;
 }
 body {
   min-height: 100vh;
   width: 100%;
-  background: var(--direction--bg);
+  /* background: var(--directio--bg); */
+  background-image: url(./la.jpg);
   background-size: cover;
   /* bg has to be fixed to allow for a continous flow of bg in the container */
   background-attachment: fixed;
@@ -218,7 +218,7 @@ even when i did 18rem border radius */
 
 .toggle--input:checked ~ .toggle--fill::after {
   transform: translateX(var(--height));
-  background-color: pink;
+  background-color: #b2d4f2;
 }
 
 /* days of the week */
@@ -271,7 +271,7 @@ even when i did 18rem border radius */
   display: flex;
 }
 /* weather decsription */
-.weather-description{
+.weather-description {
   align-self: flex-end;
 
   display: flex;

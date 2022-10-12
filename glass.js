@@ -15,6 +15,13 @@ let action = document.querySelector(".action");
 function changeTheme() {
   let Body = document.documentElement;
   Body.className = toggleBtn.checked ? "dark" : "light";
+  if (toggleBtn.checked) {
+    console.log("true");
+
+    document.body.style.backgroundImage = "url('b.jpg')";
+  } else {
+    document.body.style.backgroundImage = "url('la.jpg')";
+  }
 }
 toggleBtn.addEventListener("click", changeTheme);
 
