@@ -29,6 +29,7 @@
 
   --search-bg: white;
   --city: white;
+  --iconCurrent:var(--display-bg);
 }
 :root,:root.dark {
   --display-bg: rgba(101, 27, 118, 0.926);
@@ -53,6 +54,8 @@
 
   --search-radius: white;
   --city: white;
+ 
+
 }
 body {
   min-height: 100vh;
@@ -165,13 +168,17 @@ RULES
   border: 2px solid var(--search-radius);
   box-shadow: 0 0 3px 0 var(--search-shadow);
   background-color: var(--search-bg);
-  padding-top: 0.4rem;
+ padding: 2% 0;
   font-size: 1rem;
   width: 50%;
   text-align: center;
 }
+
 .current-location {
   width: 25%;
+}
+.icon-currentLocation{
+  color: var(--iconCurrent);
 }
 .searches {
   display: flex;
