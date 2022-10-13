@@ -10,13 +10,13 @@
 :root.light {
   --body-bg--color1: 112.1deg, rgba(77, 100, 174, 0.821) 11.4%;
   --body-bg--color2: rgb(171, 189, 248) 70.2%;
-  --display-bg: #277085;
+  --display-bg: #C27980;
   --direction--bg: linear-gradient(
     var(--body-bg--color1),
     var(--body-bg--color2)
   );
 
-  --blur: 50rem;
+  --blur: 500rem;
   --pseudoglass-bg: rgba(15, 114, 221, 0.83);
   --days: var(--display-bg);
   --box-shadow: rgb(33, 2, 33);
@@ -65,8 +65,15 @@ body {
   display: flex;
   padding: 5% 0;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   position: relative;
+}
+.authour{
+background-color: #b2d4f2;
+padding: 1rem;
+margin-top: 2rem;
+border-radius: 3rem;
 }
 h1 {
   font-size: 3vw;
