@@ -14,13 +14,13 @@ let action = document.querySelector(".action");
 
 function changeTheme() {
   let Body = document.documentElement;
-  Body.className = toggleBtn.checked ? "dark" : "light";
+  Body.className = toggleBtn.checked ? "light" : "dark";
   if (toggleBtn.checked) {
     console.log("true");
 
-    document.body.style.backgroundImage = "url('b.jpg')";
+    document.body.style.backgroundImage = "url('lightcloud.jpg')";
   } else {
-    document.body.style.backgroundImage = "url('la.jpg')";
+    document.body.style.backgroundImage = "url('darkcloud.jpg')";
   }
 }
 toggleBtn.addEventListener("click", changeTheme);
