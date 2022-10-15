@@ -13,7 +13,11 @@ let wind = document.querySelector(".wind");
 let action = document.querySelector(".action");
 let days = document.querySelector(".days");
 let instruct = document.querySelector(".instruction");
-let iconWeather=document.querySelector('.action-icon')
+let iconWeather = document.querySelector(".action-icon");
+let celciustemp = null;
+let fah = document.querySelector(".fah");
+let cel = document.querySelector(".cel");
+
 let a = new Date().toLocaleDateString("en-US", { timeZone: "America/chicago" });
 console.log(a);
 console.log(new Date(a).getHours);
@@ -25,9 +29,9 @@ function changeTheme() {
   if (toggleBtn.checked) {
     console.log("true");
 
-    document.body.style.backgroundImage = "url('darkcloud.jpg')";
+    document.body.style.backgroundImage = "url('./images/darkcloud.jpg')";
   } else {
-    document.body.style.backgroundImage = "url('lightcloud.jpg')";
+    document.body.style.backgroundImage = "url('./images/lightcloud.jpg')";
   }
 }
 toggleBtn.addEventListener("click", changeTheme);
@@ -58,16 +62,26 @@ function weatherInfo(e) {
   }
 }
 function weatherDetails(response) {
-  console.log(response.data.weather[0].icon)
-  temp.innerHTML = Math.round(response.data.main.temp);
+  console.log(response.data.weather[0].icon);
+  celciustemp = Math.round(response.data.main.temp);
+  temp.innerHTML = celciustemp;
   const countryName = response.data.sys.country;
   cityName.innerHTML = `${response.data.name}, ${countryName}`;
 
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   wind.innerHTML = `Wind: ${response.data.wind.speed}km/hr`;
-  action.innerHTML = `${response.data.weather[0].description}`;
-  iconWeather.setAttribute('src',`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
-iconWeather.setAttribute('alt',`${response.data.weather[0].description}`)
+  let description = `${response.data.weather[0].description}`;
+  action.innerHTML = description; 
+
+  iconWeather.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconWeather.setAttribute("alt", `${response.data.weather[0].description}`);
+  iconWeather.style.display = "block";
+
+  cel.classList.add("active");
+  fah.classList.remove("active");
 }
 //current-location
 
@@ -96,27 +110,32 @@ let dateText = document.querySelector("#date-text");
 console.log(weekday);
 
 let week = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ];
 
 dateText.innerHTML = `${week[weekday]} 
 ${hour < 10 ? "0" + hour : hour}:${min < 10 ? "0" + min : min}`;
 
-// let fah = document.querySelector(".fah");
-// let cel = document.querySelector(".cel");
+fah.addEventListener("click", fahConvert);
+cel.addEventListener("click", celConvert);
 
-// fah.addEventListener("click", fahConvert);
-// cel.addEventListener("click", celConvert);
+function fahConvert() {
+  let fahrenheit = (celciustemp * 9) / 5 + 32;
+  temp.innerHTML = Math.round(fahrenheit);
+  fah.classList.add("active");
+  cel.classList.remove("active");
 
-// function fahConvert() {
-//   tempUnit='imperial';
-// }
-// function celConvert() {
-//   tempUnit = 'metric';
-// }
+  console.log(temp);
+}
+function celConvert() {
+  temp.innerHTML = celciustemp;
+
+  cel.classList.add("active");
+  fah.classList.remove("active");
+}
