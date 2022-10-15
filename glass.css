@@ -6,32 +6,36 @@
   box-sizing: border-box;
 }
 
-
+:root,
 :root.light {
   --body-bg--color1: 112.1deg, rgba(77, 100, 174, 0.821) 11.4%;
   --body-bg--color2: rgb(171, 189, 248) 70.2%;
-  --display-bg: #C27980;
+   --deeppink: rgba(202, 103, 124, 0.83);
+   --display-bg:var(--deeppink);
+  /* --display-bg: #c27980; */
   --direction--bg: linear-gradient(
     var(--body-bg--color1),
     var(--body-bg--color2)
   );
 
-  --blur: 500rem;
-  --pseudoglass-bg: rgba(15, 114, 221, 0.83);
-  --days: var(--display-bg);
+  --blur: 100rem;
+  
+  --days: #c27980;
   --box-shadow: rgb(33, 2, 33);
   --border: 5px dotted var(--display-bg);
   --placeholder: rgb(74, 63, 63);
   --search-shadow: rgba(74, 70, 70, 0.449);
-  --toggle-circle:   #a17baa;
- 
+  --toggle-circle: #a17baa;
+
   --search-radius: rgba(96, 115, 178, 0.821);
 
   --search-bg: white;
   --city: white;
-  --iconCurrent:var(--display-bg);
+  --iconCurrent: var(--display-bg);
+  --description: black;
 }
-:root,:root.dark {
+
+:root.dark {
   --display-bg: rgba(101, 27, 118, 0.926);
   --direction: to top;
   --direction--bg: linear-gradient(
@@ -39,49 +43,59 @@
     var(--body-bg--color1),
     var(--body-bg--color2)
   );
-
-  --blur: 5rem;
-  --pseudoglass-bg: rgba(202, 103, 124, 0.83);
-
+  --blur: 500rem;
+ 
   --search-bg: rgba(244, 197, 235, 0.501);
-
   --days: #a17baa;
   --box-shadow: rgba(25, 18, 25, 0.526);
   --border: none;
-  --placeholder: rgb(99, 76, 80);
+  --placeholder: aliceblue;
   --h1: black;
   --search-shadow: var(--box-shadow);
-
   --search-radius: white;
   --city: white;
- 
-
+  --description: var(--city);
+  --instruct: aliceblue;
 }
 body {
   min-height: 100vh;
   width: 100%;
   /* background: var(--directio--bg); */
-  background-image: url(./darkcloud.jpg);
+  background-image: url(./lightcloud.jpg);
   background-size: cover;
   /* bg has to be fixed to allow for a continous flow of bg in the container */
   background-attachment: fixed;
   display: flex;
   padding: 5% 0;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   position: relative;
 }
-.authour{
-background-color: #b2d4f2;
-padding: 1rem;
-margin-top: 2rem;
-border-radius: 3rem;
+.authour,
+a {
+  color: aliceblue;
 }
 h1 {
-  font-size: 3vw;
+  font-size: 3.5rem;
 
   color: var(--h1);
+}
+h3 {
+  visibility: hidden;
+
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.instruction {
+  display: block;
+  font-style: italic;
+  text-align: center;
+  color: var(--instruct);
+}
+.instruction span {
+  color: black;
 }
 /* A frosted glass effect */
 .container {
@@ -145,6 +159,7 @@ RULES
 .search--label {
   width: 50%;
   height: 30%;
+ 
 }
 .search-display {
   width: 100%;
@@ -168,7 +183,7 @@ RULES
   border: 2px solid var(--search-radius);
   box-shadow: 0 0 3px 0 var(--search-shadow);
   background-color: var(--search-bg);
- padding: 2% 0;
+  padding: 2% 0;
   font-size: 1rem;
   width: 50%;
   text-align: center;
@@ -177,7 +192,7 @@ RULES
 .current-location {
   width: 25%;
 }
-.icon-currentLocation{
+.icon-currentLocation {
   color: var(--iconCurrent);
 }
 .searches {
@@ -237,13 +252,8 @@ even when i did 18rem border radius */
 
 /* days of the week */
 .days {
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-
-  grid-template-rows: auto;
-  justify-self: center;
-  gap: 10px;
+  display: none;
+  justify-content: space-evenly;
   width: 100%;
   padding: 0 5%;
   margin-top: 2rem;
@@ -260,19 +270,16 @@ even when i did 18rem border radius */
 .day {
   border-radius: 1rem;
 }
-.day--heading {
-  grid-column: 1/-1;
-  justify-self: center;
-  font-size: 2rem;
-  text-align: center;
-}
 
 /* live content  */
 
 .weather-info {
   align-self: flex-start;
-  padding-left: 5%;
+  padding:0 5%;
   margin-top: 2%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 .temp {
   font-size: 5vw;
@@ -284,6 +291,15 @@ even when i did 18rem border radius */
 .temp-container {
   display: flex;
 }
+
+.action-icon{
+ 
+  width: 10rem;
+  height: auto;
+ 
+  align-self: flex-end;
+justify-self: start;
+}
 /* weather decsription */
 .weather-description {
   align-self: flex-end;
@@ -291,10 +307,11 @@ even when i did 18rem border radius */
   display: flex;
   flex-direction: column;
   margin-right: 10%;
+  color: var(--description);
 }
 @media (max-width: 992px) {
   h1 {
-    font-size: 8vw;
+    font-size: 6vw;
   }
   .temp {
     font-size: 12vw;
@@ -313,14 +330,33 @@ even when i did 18rem border radius */
   .search--label {
     width: 70%;
   }
+  .action-icon{
+    width: 6rem;
+  }
 }
 @media (max-width: 700px) {
   .future {
     font-size: 1.5rem;
   }
+  h1 {
+    font-size: 8vw;
+  }
+  .instruction {
+    padding: 0 5%;
+  }
 }
 @media (max-width: 450px) {
   .search {
     font-size: 0.7rem;
+  }
+  :root,
+  :root.dark {
+    --blur: 20rem;
+  }
+  .instruction {
+    margin-top: 10%;
+  }
+  .action-icon{
+    font-size: 4rem;
   }
 }

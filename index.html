@@ -16,7 +16,7 @@
     <div class="container">
         <form class="display" id="form--container">
             <label for="Search" class="search--label">
-                <input type="text" id="Search" class="search-display" value="" placeholder="enter a city  ...">
+                <input type="text" id="Search" class="search-display" value="" placeholder="enter a city 🏙️">
             </label>
             <div class="searches">
                 <button type="submit" class="search" id="search-btn">search</button>
@@ -32,31 +32,41 @@
         </form>
         <!-- content -->
         <section class="weather-info">
+            <div>
             <h1 id="city"></h1>
             <div class="date" id="date-text"></div>
-            <div class="action"></div>
+
+            <p class="action"></p>
+
             <div class="temp-container">
                 <div class="temp">?</div>
-                <span class="cel"> &#8451;</span>
-                <!-- <span class="fah">&#8457;</span> -->
+                <span class="cel"> &#8451;</span>|
+                <span class="fah">&#8457;</span>
             </div>
             <p class="current-location-text"></p>
+          </div>
+            <!-- weather icon -->
+            <img class="action-icon" src="#" alt="weather-icon">
+
         </section>
 
+        <!-- weather description -->
         <section class="weather-description">
             <p class="humidity"></p>
             <p class="wind"></p>
         </section>
         <!-- weather for next 7 dayss -->
+        <p class="instruction">click on the <span><i class="  fa fa-map-marker" aria-hidden="true"></i></span>
+            icon to get your current location and the <span>&#8457</span> to convert to fahrenheit</p>
+        <h3 class="future">Future weather</h3>
         <section class="days">
-            <h3 class="day--heading">Future weather</h3>
-            <div class="day day1">monday</div>
-            <div class="day day2">tuesday</div>
-            <div class="day day3">wednesday</div>
-            <div class="day day4">thursday</div>
-            <div class="day day5">friday</div>
-            <div class="day day6">saturday</div>
-            <div class="day day7">sunday</div>
+            <div class="day day1">Mon</div>
+            <div class="day day2">Tue</div>
+            <div class="day day3">Wed</div>
+            <div class="day day4">Thur</div>
+            <div class="day day5">Fri</div>
+            <div class="day day6">Sat</div>
+            <div class="day day7">Sun</div>
 
         </section>
 
