@@ -17,10 +17,8 @@ let iconWeather = document.querySelector(".action-icon");
 let celciustemp = null;
 let fah = document.querySelector(".fah");
 let cel = document.querySelector(".cel");
-
-let a = new Date().toLocaleDateString("en-US", { timeZone: "America/chicago" });
-console.log(a);
-console.log(new Date(a).getHours);
+let dayName = document.querySelector(".dayName");
+let dateText = document.querySelector("#date-text");
 
 //changing theme
 function changeTheme() {
@@ -62,7 +60,7 @@ function weatherInfo(e) {
   }
 }
 function weatherDetails(response) {
-  console.log(response.data.weather[0].icon);
+  console.log(response.data);
   celciustemp = Math.round(response.data.main.temp);
   temp.innerHTML = celciustemp;
   const countryName = response.data.sys.country;
@@ -71,7 +69,7 @@ function weatherDetails(response) {
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   wind.innerHTML = `Wind: ${response.data.wind.speed}km/hr`;
   let description = `${response.data.weather[0].description}`;
-  action.innerHTML = description; 
+  action.innerHTML = description;
 
   iconWeather.setAttribute(
     "src",
@@ -82,7 +80,35 @@ function weatherDetails(response) {
 
   cel.classList.add("active");
   fah.classList.remove("active");
+
+  // time based on location timeZone
+
+  function currentCountryTime() {
+    var data = ct.getCountry(`${countryName}`);
+    let timezone = data.timezones[0];
+    console.log(data);
+    console.log(data.timezones[0]);
+
+    let timeInfo = new Date().toLocaleString("US", {
+      timeZone: timezone,
+      hour12: true,
+      hourCycle: 'h23',
+      
+    });
+
+    console.log(timeInfo);
+    dateText.innerHTML = timeInfo;
+
+    let dayname = new Date().toLocaleString("US", {
+      timeZone: timezone,
+      weekday: "short",
+    });
+    console.log(dayname);
+    dayName.innerHTML = dayname ;
+  }
+  currentCountryTime();
 }
+
 //current-location
 
 current.addEventListener("click", getCurrent);
@@ -100,27 +126,27 @@ function myResponse(location) {
 }
 //time
 
-let day = new Date();
-let weekday = day.getDay();
+// let day = new Date();
+// let weekday = day.getDay();
 
-let hour = day.getHours();
+// let hour = day.getHours();
 
-let min = day.getMinutes();
-let dateText = document.querySelector("#date-text");
-console.log(weekday);
+// let min = day.getMinutes();
+// let dateText = document.querySelector("#date-text");
+// console.log(weekday);
 
-let week = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+// let week = [
+//   "Sunday",
+//   "Monday",
+//   "Tuesday",
+//   "Wednesday",
+//   "Thursday",
+//   "Friday",
+//   "Saturday",
+// ];
 
-dateText.innerHTML = `${week[weekday]} 
-${hour < 10 ? "0" + hour : hour}:${min < 10 ? "0" + min : min}`;
+// dateText.innerHTML = `${week[weekday]}
+// ${hour < 10 ? "0" + hour : hour}:${min < 10 ? "0" + min : min}`;
 
 fah.addEventListener("click", fahConvert);
 cel.addEventListener("click", celConvert);
@@ -139,3 +165,4 @@ function celConvert() {
   cel.classList.add("active");
   fah.classList.remove("active");
 }
+// getting current time of our search result;

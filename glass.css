@@ -297,10 +297,26 @@ even when i did 18rem border radius */
 .temp-container {
   display: flex;
 }
+.action{
+  font-weight: bold;
+  font-style: italic;
+}
 .action-icon{
   display:none;
   width: 6rem;
   height: 6rem;
+}
+.time-info{
+  display: flex;
+  align-items: center;
+}
+.dayName{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+#date-ext{
+font-style: italic;
+
 }
 
 /* weather decsription */
@@ -310,6 +326,9 @@ even when i did 18rem border radius */
   display: flex;
   flex-direction: column;
   margin-right: 10%;
+  color: var(--description);
+}
+.weather-info,h1{
   color: var(--description);
 }
 @media (max-width: 992px) {
