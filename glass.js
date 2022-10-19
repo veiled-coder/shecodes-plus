@@ -39,6 +39,27 @@ function contentDisplay() {
   days.style.display = "flex";
   h3.style.visibility = "visible";
   instruct.style.display = "none";
+  //forecast display
+
+  function forecast() {
+    let daysHtml = "";
+    let daysName = ["Mon", "Tue", "Wed",'Thur'];
+    daysName.forEach((day) => {
+      daysHtml =
+        daysHtml +
+        ` <div class="day day1">
+                <p>${day}</p>
+                <div>Icon</div>
+                <div class="day-temp">
+                    <span class="max">15 &deg;</span>
+                    <span class="min">12 &deg;</span>
+                </div>
+  </div>`;
+    });
+
+    days.innerHTML = daysHtml;
+  }
+  forecast();
 }
 
 // weather
@@ -47,9 +68,7 @@ form.addEventListener("submit", weatherInfo);
 function weatherInfo(e) {
   e.preventDefault();
   let searchValue = searchDisplay.value;
-  if (searchValue) {
-    contentDisplay();
-  }
+
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=${tempUnit}&appid=${apiKey}`;
 
   axios.get(apiUrl).then(results);
@@ -70,7 +89,7 @@ function weatherDetails(response) {
   wind.innerHTML = `Wind: ${response.data.wind.speed}km/hr`;
   let description = `${response.data.weather[0].description}`;
   action.innerHTML = description;
-
+  contentDisplay();
   iconWeather.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -92,8 +111,7 @@ function weatherDetails(response) {
     let timeInfo = new Date().toLocaleString("US", {
       timeZone: timezone,
       hour12: true,
-      hourCycle: 'h23',
-      
+      hourCycle: "h23",
     });
 
     console.log(timeInfo);
@@ -104,7 +122,7 @@ function weatherDetails(response) {
       weekday: "short",
     });
     console.log(dayname);
-    dayName.innerHTML = dayname ;
+    dayName.innerHTML = dayname;
   }
   currentCountryTime();
 }
@@ -114,7 +132,6 @@ function weatherDetails(response) {
 current.addEventListener("click", getCurrent);
 function getCurrent() {
   navigator.geolocation.getCurrentPosition(myResponse);
-  contentDisplay();
 }
 function myResponse(location) {
   let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=${tempUnit}&appid=${apiKey}`;

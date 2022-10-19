@@ -33,7 +33,10 @@
   --city: white;
   --iconCurrent: var(--display-bg);
   --description: black;
-  --active:brown;
+  --active: brown;
+  --Acme: "Acme", "sans-serif";
+  --h3: var(--deeppink);
+  --stroke: black;
 }
 
 :root.dark {
@@ -57,8 +60,10 @@
   --city: white;
   --description: var(--city);
   --instruct: aliceblue;
-  --active:rgb(243, 193, 243);
-
+  --active: rgb(243, 193, 243);
+  --Acme: "Acme", "sans-serif";
+  --h3: rgba(194, 155, 203, 0.926);
+  --stroke: black;
 }
 body {
   min-height: 100vh;
@@ -75,7 +80,7 @@ body {
   align-items: center;
   position: relative;
 }
-.active{
+.active {
   color: var(--active);
   font-weight: bolder;
 }
@@ -90,11 +95,20 @@ h1 {
 }
 h3 {
   visibility: hidden;
+  color: var(--h3);
 
   font-size: 2rem;
   text-align: center;
   margin-top: 2rem;
+  -webkit-text-stroke: 1px var(--stroke);
 }
+h3,
+h1 {
+  font-family: var(--Acme);
+  font-weight: 100;
+  letter-spacing: 1;
+}
+
 .instruction {
   display: block;
   font-style: italic;
@@ -256,7 +270,8 @@ even when i did 18rem border radius */
   background-color: #b2d4f2;
 }
 
-/* days of the week */
+/* Forecast of the week */
+
 .days {
   display: none;
   justify-content: space-evenly;
@@ -265,13 +280,16 @@ even when i did 18rem border radius */
   margin-top: 2rem;
 }
 .days .day {
-  background-color: aliceblue;
+  color: aliceblue;
 
   height: 100px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
   background-color: var(--days);
   box-shadow: 0 0 0.1rem var(--box-shadow);
+  padding: 0 2%;
 }
 .day {
   border-radius: 1rem;
@@ -297,26 +315,25 @@ even when i did 18rem border radius */
 .temp-container {
   display: flex;
 }
-.action{
+.action {
   font-weight: bold;
-  font-style: italic;
 }
-.action-icon{
-  display:none;
+.action-icon {
+  display: none;
   width: 6rem;
   height: 6rem;
 }
-.time-info{
+.time-info {
   display: flex;
-  align-items: center;
+
+  justify-content: space-between;
 }
-.dayName{
-  text-transform: uppercase;
+.update {
   font-weight: bold;
 }
-#date-ext{
-font-style: italic;
 
+#date-ext {
+  font-style: italic;
 }
 
 /* weather decsription */
@@ -328,7 +345,8 @@ font-style: italic;
   margin-right: 10%;
   color: var(--description);
 }
-.weather-info,h1{
+.weather-info,
+h1 {
   color: var(--description);
 }
 @media (max-width: 992px) {
@@ -355,8 +373,6 @@ font-style: italic;
   .action-icon {
     width: 6rem;
   }
-  
-
 }
 @media (max-width: 700px) {
   .future {
@@ -367,6 +383,11 @@ font-style: italic;
   }
   .instruction {
     padding: 0 5%;
+  }
+}
+@media (max-width: 470px) {
+  .time-info {
+    font-size: 0.9rem;
   }
 }
 @media (max-width: 450px) {
@@ -381,8 +402,19 @@ font-style: italic;
     margin-top: 10%;
   }
   .action-icon {
-    width:  4rem;
+    width: 4rem;
     height: 4rem;
   }
-  
+  .time-info {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .time-info {
+    font-size: 0.6rem;
+  }
+  .days {
+    padding: 0;
+  }
 }
