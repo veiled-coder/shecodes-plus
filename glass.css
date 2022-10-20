@@ -20,7 +20,6 @@
 
   --blur: 100rem;
 
-  --days: #c27980;
   --box-shadow: rgb(33, 2, 33);
   --border: 5px dotted var(--display-bg);
   --placeholder: rgb(74, 63, 63);
@@ -35,8 +34,11 @@
   --description: black;
   --active: brown;
   --Acme: "Acme", "sans-serif";
-  --h3: var(--deeppink);
+  --h3: aliceblue;
   --stroke: black;
+--day-bg:radial-gradient(circle at 10% 20%, rgb(255, 252, 214) 0%, rgba(255, 102, 102, 0.44) 90%);
+
+  
 }
 
 :root.dark {
@@ -54,7 +56,7 @@
   --box-shadow: rgba(25, 18, 25, 0.526);
   --border: none;
   --placeholder: aliceblue;
-  --h1: black;
+  --h1: white;
   --search-shadow: var(--box-shadow);
   --search-radius: white;
   --city: white;
@@ -62,8 +64,10 @@
   --instruct: aliceblue;
   --active: rgb(243, 193, 243);
   --Acme: "Acme", "sans-serif";
-  --h3: rgba(194, 155, 203, 0.926);
+  --h3: aliceblue;
   --stroke: black;
+  --day-bg:linear-gradient(123.5deg, rgb(244, 219, 251) 29.3%, rgb(255, 214, 214) 67.1%);;
+
 }
 body {
   min-height: 100vh;
@@ -88,7 +92,7 @@ body {
 a {
   color: aliceblue;
 }
-h1 {
+h1#city {
   font-size: 3.5rem;
 
   color: var(--h1);
@@ -96,7 +100,7 @@ h1 {
 h3 {
   visibility: hidden;
   color: var(--h3);
-
+  text-transform: uppercase;
   font-size: 2rem;
   text-align: center;
   margin-top: 2rem;
@@ -274,27 +278,28 @@ even when i did 18rem border radius */
 
 .days {
   display: none;
-  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fit, minmax(4rem, min-content));
+  grid-gap: 1rem;
   width: 100%;
   padding: 0 5%;
   margin-top: 2rem;
-}
-.days .day {
-  color: aliceblue;
 
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-  background-color: var(--days);
-  box-shadow: 0 0 0.1rem var(--box-shadow);
-  padding: 0 2%;
+  justify-content: center;
 }
 .day {
-  border-radius: 1rem;
-}
+  border: 2px solid var(--days);
+background: var(--day-bg);
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1%;
+  /* box-shadow: 0 0 0.1rem var(--box-shadow);
+  padding: 0 2%; */
+}
+.day img {
+  width: 4rem;
+}
 /* live content  */
 
 .weather-info {
@@ -413,8 +418,5 @@ h1 {
 @media (max-width: 375px) {
   .time-info {
     font-size: 0.6rem;
-  }
-  .days {
-    padding: 0;
   }
 }

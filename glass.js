@@ -5,7 +5,8 @@ let searchDisplay = document.querySelector("#Search");
 let cityName = document.querySelector("h1");
 let temp = document.querySelector(".temp");
 let tempUnit = "metric";
-let apiKey = "c57ce4bd372d8c67eb7282dd25e41eae";
+let apiKey = "8cac06f7ab6c10287cd06a316ff84a57";
+
 let h3 = document.querySelector("h3");
 let current = document.querySelector(".current-location");
 let humidity = document.querySelector(".humidity");
@@ -34,52 +35,91 @@ function changeTheme() {
 }
 toggleBtn.addEventListener("click", changeTheme);
 
-//content display
-function contentDisplay() {
-  days.style.display = "flex";
-  h3.style.visibility = "visible";
-  instruct.style.display = "none";
-  //forecast display
-
-  function forecast() {
-    let daysHtml = "";
-    let daysName = ["Mon", "Tue", "Wed",'Thur'];
-    daysName.forEach((day) => {
-      daysHtml =
-        daysHtml +
-        ` <div class="day day1">
-                <p>${day}</p>
-                <div>Icon</div>
-                <div class="day-temp">
-                    <span class="max">15 &deg;</span>
-                    <span class="min">12 &deg;</span>
-                </div>
-  </div>`;
-    });
-
-    days.innerHTML = daysHtml;
-  }
-  forecast();
-}
-
 // weather
+
+const openWeather = axios.create({
+  baseURL: `https://api.openweathermap.org/`,
+});
 form.addEventListener("submit", weatherInfo);
 
 function weatherInfo(e) {
   e.preventDefault();
   let searchValue = searchDisplay.value;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=${tempUnit}&appid=${apiKey}`;
-
-  axios.get(apiUrl).then(results);
+  openWeather
+    .get(`data/2.5/weather?q=${searchValue}&units=${tempUnit}&appid=${apiKey}`)
+    .then(results);
   function results(weatherResponse) {
     console.log(weatherResponse.data.weather[0].main);
 
     weatherDetails(weatherResponse);
   }
 }
+//RESPONSE RECEIVED FROM THE WEATHER INFO CALL
 function weatherDetails(response) {
-  console.log(response.data);
+  console.log(response.data.coord);
+  let lat = response.data.coord.lat;
+  let long = response.data.coord.lon;
+
+  //API CALL FOR FORECAST
+  async function getforeCast() {
+    const forecastInfo = await openWeather.get(
+      `/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`
+    );
+    //content display
+    function forecastDisplay() {
+      days.style.display = "grid";
+      h3.style.visibility = "visible";
+      instruct.style.display = "none";
+    }
+
+    forecastDisplay();
+    //forecast display
+    console.log(forecastInfo.data.daily);
+
+    let dailyForecast = forecastInfo.data.daily;
+    function forecast() {
+      let daysHtml = "";
+
+      dailyForecast.forEach((day) => {
+        daysHtml =
+          daysHtml +
+          ` <div class="day day1">
+                <p>day</p>
+                
+                 <img src='http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png'/>
+                <div class="day-temp">
+                    <span class="max">15 &deg;</span>
+                    <span class="min">12 &deg;</span>
+                </div>
+                
+  </div>`;
+      });
+
+      days.innerHTML = daysHtml;
+    }
+    forecast();
+
+    // TIMEZONES OF DIFFRENT REGIONS
+    let timezone = forecastInfo.data.timezone;
+
+    let timeInfo = new Date().toLocaleString("US", {
+      timeZone: timezone,
+      hour12: true,
+      timeZoneName: "short",
+    });
+
+    let dayname = new Date().toLocaleString("US", {
+      timeZone: timezone,
+      weekday: "short",
+    });
+
+    dateText.innerHTML = timeInfo;
+
+    dayName.innerHTML = dayname;
+  }
+  getforeCast();
+  //USING INFO FROM WEATHERINFO API CALL
   celciustemp = Math.round(response.data.main.temp);
   temp.innerHTML = celciustemp;
   const countryName = response.data.sys.country;
@@ -89,7 +129,7 @@ function weatherDetails(response) {
   wind.innerHTML = `Wind: ${response.data.wind.speed}km/hr`;
   let description = `${response.data.weather[0].description}`;
   action.innerHTML = description;
-  contentDisplay();
+
   iconWeather.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -101,30 +141,6 @@ function weatherDetails(response) {
   fah.classList.remove("active");
 
   // time based on location timeZone
-
-  function currentCountryTime() {
-    var data = ct.getCountry(`${countryName}`);
-    let timezone = data.timezones[0];
-    console.log(data);
-    console.log(data.timezones[0]);
-
-    let timeInfo = new Date().toLocaleString("US", {
-      timeZone: timezone,
-      hour12: true,
-      hourCycle: "h23",
-    });
-
-    console.log(timeInfo);
-    dateText.innerHTML = timeInfo;
-
-    let dayname = new Date().toLocaleString("US", {
-      timeZone: timezone,
-      weekday: "short",
-    });
-    console.log(dayname);
-    dayName.innerHTML = dayname;
-  }
-  currentCountryTime();
 }
 
 //current-location
@@ -134,8 +150,8 @@ function getCurrent() {
   navigator.geolocation.getCurrentPosition(myResponse);
 }
 function myResponse(location) {
-  let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=${tempUnit}&appid=${apiKey}`;
-  axios.get(apiUrlCurrent).then(currentResult);
+  let apiUrlCurrent = `/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=${tempUnit}&appid=${apiKey}`;
+  openWeather.get(apiUrlCurrent).then(currentResult);
   function currentResult(weatherResponse) {
     console.log(weatherResponse.data.main.temp);
     weatherDetails(weatherResponse);
