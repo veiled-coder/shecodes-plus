@@ -36,9 +36,12 @@
   --Acme: "Acme", "sans-serif";
   --h3: aliceblue;
   --stroke: black;
---day-bg:radial-gradient(circle at 10% 20%, rgb(255, 252, 214) 0%, rgba(255, 102, 102, 0.44) 90%);
-
-  
+  --day-bg: radial-gradient(
+    circle at 10% 20%,
+    rgb(255, 252, 214) 0%,
+    rgba(255, 102, 102, 0.44) 90%
+  );
+  --instructSpan: black;
 }
 
 :root.dark {
@@ -66,8 +69,12 @@
   --Acme: "Acme", "sans-serif";
   --h3: aliceblue;
   --stroke: black;
-  --day-bg:linear-gradient(123.5deg, rgb(244, 219, 251) 29.3%, rgb(255, 214, 214) 67.1%);;
-
+  --day-bg: linear-gradient(
+    123.5deg,
+    rgb(244, 219, 251) 29.3%,
+    rgb(255, 214, 214) 67.1%
+  );
+  --instructSpan: aliceblue;
 }
 body {
   min-height: 100vh;
@@ -120,7 +127,7 @@ h1 {
   color: var(--instruct);
 }
 .instruction span {
-  color: black;
+  color: var(--instructSpan);
 }
 /* A frosted glass effect */
 .container {
@@ -278,7 +285,7 @@ even when i did 18rem border radius */
 
 .days {
   display: none;
-  grid-template-columns: repeat(auto-fit, minmax(4rem, min-content));
+  grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
   grid-gap: 1rem;
   width: 100%;
   padding: 0 5%;
@@ -286,12 +293,14 @@ even when i did 18rem border radius */
 
   justify-content: center;
 }
+
 .day {
   border: 2px solid var(--days);
-background: var(--day-bg);
-
+  background: var(--day-bg);
+  text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 1%;
   /* box-shadow: 0 0 0.1rem var(--box-shadow);
@@ -299,6 +308,14 @@ background: var(--day-bg);
 }
 .day img {
   width: 4rem;
+}
+.day--description {
+  font-style: italic;
+  font-weight: lighter;
+}
+.forecast--day {
+  font-family: var(--Acme);
+  justify-self: baseline;
 }
 /* live content  */
 
@@ -364,6 +381,10 @@ h1 {
   .temp span {
     font-size: 5vw;
   }
+  .days {
+    padding: 0 2%;
+    justify-content: space-around;
+  }
 }
 @media (max-width: 768px) {
   .toggle {
@@ -383,8 +404,8 @@ h1 {
   .future {
     font-size: 1.5rem;
   }
-  h1 {
-    font-size: 8vw;
+  h1#city {
+    font-size: 6vw;
   }
   .instruction {
     padding: 0 5%;
@@ -418,5 +439,11 @@ h1 {
 @media (max-width: 375px) {
   .time-info {
     font-size: 0.6rem;
+  }
+  h1#city {
+    font-size: 1.5rem;
+  }
+  .day img {
+    width: 3rem;
   }
 }

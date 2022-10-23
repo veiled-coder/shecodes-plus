@@ -1,7 +1,7 @@
 const toggleBtn = document.querySelector("#Toggle");
 let form = document.querySelector("#form--container");
 let searchDisplay = document.querySelector("#Search");
-
+let forecastDay = document.querySelector(".forecast--day");
 let cityName = document.querySelector("h1");
 let temp = document.querySelector(".temp");
 let tempUnit = "metric";
@@ -19,7 +19,8 @@ let celciustemp = null;
 let fah = document.querySelector(".fah");
 let cel = document.querySelector(".cel");
 let dayName = document.querySelector(".dayName");
-let dateText = document.querySelector("#date-text");
+let dateText = document.querySelector("#date-text"),
+  mintmp = document.querySelector(".day-temp.min");
 
 //changing theme
 function changeTheme() {
@@ -66,6 +67,7 @@ function weatherDetails(response) {
     const forecastInfo = await openWeather.get(
       `/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`
     );
+    console.log(forecastInfo.data);
     //content display
     function forecastDisplay() {
       days.style.display = "grid";
@@ -74,26 +76,44 @@ function weatherDetails(response) {
     }
 
     forecastDisplay();
-    //forecast display
-    console.log(forecastInfo.data.daily);
+    //GET DAYNAME FROM DAILY FORCAST API
 
+    function formatDay(timestamp) {
+      let day = new Date(timestamp * 1000);
+      let getday = day.getDay();
+
+      let week = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
+
+      return week[getday];
+
+      // formatDay was called in the html with the number value of the dt as our timestamp
+    }
+    // FORECAST DISPLAY
     let dailyForecast = forecastInfo.data.daily;
     function forecast() {
       let daysHtml = "";
 
-      dailyForecast.forEach((day) => {
-        daysHtml =
-          daysHtml +
-          ` <div class="day day1">
-                <p>day</p>
-                
-                 <img src='http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png'/>
+      dailyForecast.forEach((day, index) => {
+        // console.log(day.weather[0].description);
+        if (index < 5) {
+          daysHtml =
+            daysHtml +
+            ` <div class="day day1">
+                <p class="forecast--day">${formatDay(day.dt)}</p>
+                       <p class="day--description">${
+                         day.weather[0].description
+                       }<p/>
+                 <img  src='http://openweathermap.org/img/wn/${
+                   day.weather[0].icon
+                 }@2x.png'/>
+          
                 <div class="day-temp">
-                    <span class="max">15 &deg;</span>
-                    <span class="min">12 &deg;</span>
+                    <span class="min">${Math.round(day.temp.min)} &deg;</span>
+                    <span class="max">${Math.round(day.temp.max)} &deg;</span>
                 </div>
                 
   </div>`;
+        }
       });
 
       days.innerHTML = daysHtml;
@@ -117,6 +137,33 @@ function weatherDetails(response) {
     dateText.innerHTML = timeInfo;
 
     dayName.innerHTML = dayname;
+
+    // TPM CONVERSION
+    fah.addEventListener("click", fahConvert);
+    cel.addEventListener("click", celConvert);
+
+    function fahConvert() {
+      // let average = forecastInfo.data.daily;
+      // for (let i = 0; i < average.length; i++) {
+      //   let max = average[i].temp.max;
+      //   let min = average[i].temp.min;
+      //   let maxFah = Math.round((max * 9) / 5 + 32);
+      //   let minFah = Math.round((min * 9) / 5 + 32);
+
+      // }
+
+      let tmpFah = (celciustemp * 9) / 5 + 32;
+
+      temp.innerHTML = Math.round(tmpFah);
+      fah.classList.add("active");
+      cel.classList.remove("active");
+    }
+    function celConvert() {
+      temp.innerHTML = celciustemp;
+
+      cel.classList.add("active");
+      fah.classList.remove("active");
+    }
   }
   getforeCast();
   //USING INFO FROM WEATHERINFO API CALL
@@ -168,34 +215,4 @@ function myResponse(location) {
 // let dateText = document.querySelector("#date-text");
 // console.log(weekday);
 
-// let week = [
-//   "Sunday",
-//   "Monday",
-//   "Tuesday",
-//   "Wednesday",
-//   "Thursday",
-//   "Friday",
-//   "Saturday",
-// ];
-
-// dateText.innerHTML = `${week[weekday]}
-// ${hour < 10 ? "0" + hour : hour}:${min < 10 ? "0" + min : min}`;
-
-fah.addEventListener("click", fahConvert);
-cel.addEventListener("click", celConvert);
-
-function fahConvert() {
-  let fahrenheit = (celciustemp * 9) / 5 + 32;
-  temp.innerHTML = Math.round(fahrenheit);
-  fah.classList.add("active");
-  cel.classList.remove("active");
-
-  console.log(temp);
-}
-function celConvert() {
-  temp.innerHTML = celciustemp;
-
-  cel.classList.add("active");
-  fah.classList.remove("active");
-}
 // getting current time of our search result;
