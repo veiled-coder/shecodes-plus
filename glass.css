@@ -288,6 +288,7 @@ even when i did 18rem border radius */
   grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
   grid-gap: 1rem;
   width: 100%;
+
   padding: 0 5%;
   margin-top: 2rem;
 
@@ -300,9 +301,12 @@ even when i did 18rem border radius */
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0 1%;
+  border-radius: 1rem;
+  box-shadow: 1px 5px rgba(32, 4, 40, 0.586);
+
   /* box-shadow: 0 0 0.1rem var(--box-shadow);
   padding: 0 2%; */
 }
@@ -313,9 +317,13 @@ even when i did 18rem border radius */
   font-style: italic;
   font-weight: lighter;
 }
+.min-content,
+.max-content {
+  display: flex;
+}
 .forecast--day {
   font-family: var(--Acme);
-  justify-self: baseline;
+  justify-self: flex-start;
 }
 /* live content  */
 
@@ -414,6 +422,10 @@ h1 {
 @media (max-width: 470px) {
   .time-info {
     font-size: 0.9rem;
+  }
+  .day-temp {
+    display: flex;
+    flex-direction: column;
   }
 }
 @media (max-width: 450px) {

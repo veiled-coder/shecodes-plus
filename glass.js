@@ -19,8 +19,7 @@ let celciustemp = null;
 let fah = document.querySelector(".fah");
 let cel = document.querySelector(".cel");
 let dayName = document.querySelector(".dayName");
-let dateText = document.querySelector("#date-text"),
-  mintmp = document.querySelector(".day-temp.min");
+let dateText = document.querySelector("#date-text");
 
 //changing theme
 function changeTheme() {
@@ -90,6 +89,7 @@ function weatherDetails(response) {
     }
     // FORECAST DISPLAY
     let dailyForecast = forecastInfo.data.daily;
+    console.log(dailyForecast);
     function forecast() {
       let daysHtml = "";
 
@@ -108,8 +108,16 @@ function weatherDetails(response) {
                  }@2x.png'/>
           
                 <div class="day-temp">
-                    <span class="min">${Math.round(day.temp.min)} &deg;</span>
-                    <span class="max">${Math.round(day.temp.max)} &deg;</span>
+                <div class='min-content'>
+                    <p class="min cel-temp">${Math.round(
+                      day.temp.min
+                    )} </p><span>&deg;</span>
+                    </div>
+                    <div class='max-content'>
+                    <p class="max cel-temp">${Math.round(
+                      day.temp.max
+                    )} </p><span>&deg;</span>
+                    </div>
                 </div>
                 
   </div>`;
@@ -117,6 +125,42 @@ function weatherDetails(response) {
       });
 
       days.innerHTML = daysHtml;
+
+      //  convert to fahrenheit
+      fah.addEventListener("click", fahConvert);
+
+      let mintmp = document.querySelectorAll(".min");
+      let maxtmp = document.querySelectorAll(".max");
+      function fahConvert() {
+        temp.innerHTML = Math.round((celciustemp * 9) / 5 + 32);
+        for (i = 0; i < mintmp.length; i++) {
+          mintmp[i].innerHTML = Math.round(
+            (dailyForecast[i].temp.min * 9) / 5 + 32
+          );
+          maxtmp[i].innerHTML = Math.round(
+            (dailyForecast[i].temp.max * 9) / 5 + 32
+          );
+
+          fah.classList.add("active");
+          cel.classList.remove("active");
+        }
+      }
+      // convert to celcius
+      cel.addEventListener("click", celConvert);
+
+      function celConvert() {
+        for (i = 0; i < mintmp.length; i++) {
+          let minprevious = Math.round(dailyForecast[i].temp.min);
+          let maxprevious = Math.round(dailyForecast[i].temp.max);
+          mintmp[i].innerHTML = minprevious;
+          maxtmp[i].innerHTML = maxprevious;
+        }
+
+        temp.innerHTML = celciustemp;
+
+        cel.classList.add("active");
+        fah.classList.remove("active");
+      }
     }
     forecast();
 
@@ -139,31 +183,6 @@ function weatherDetails(response) {
     dayName.innerHTML = dayname;
 
     // TPM CONVERSION
-    fah.addEventListener("click", fahConvert);
-    cel.addEventListener("click", celConvert);
-
-    function fahConvert() {
-      // let average = forecastInfo.data.daily;
-      // for (let i = 0; i < average.length; i++) {
-      //   let max = average[i].temp.max;
-      //   let min = average[i].temp.min;
-      //   let maxFah = Math.round((max * 9) / 5 + 32);
-      //   let minFah = Math.round((min * 9) / 5 + 32);
-
-      // }
-
-      let tmpFah = (celciustemp * 9) / 5 + 32;
-
-      temp.innerHTML = Math.round(tmpFah);
-      fah.classList.add("active");
-      cel.classList.remove("active");
-    }
-    function celConvert() {
-      temp.innerHTML = celciustemp;
-
-      cel.classList.add("active");
-      fah.classList.remove("active");
-    }
   }
   getforeCast();
   //USING INFO FROM WEATHERINFO API CALL
