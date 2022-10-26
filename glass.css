@@ -285,7 +285,7 @@ even when i did 18rem border radius */
 
 .days {
   display: none;
-  grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(4.5rem, 1fr));
   grid-gap: 1rem;
   width: 100%;
 
@@ -390,7 +390,7 @@ h1 {
     font-size: 5vw;
   }
   .days {
-    padding: 0 2%;
+   
     justify-content: space-around;
   }
 }
@@ -453,7 +453,7 @@ h1 {
     font-size: 0.6rem;
   }
   h1#city {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   .day img {
     width: 3rem;
