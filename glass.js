@@ -95,7 +95,7 @@ function weatherDetails(response) {
 
       dailyForecast.forEach((day, index) => {
         // console.log(day.weather[0].description);
-        if (index < 5) {
+        if (index > 0 && index < 7) {
           daysHtml =
             daysHtml +
             ` <div class="day day1">
@@ -109,14 +109,14 @@ function weatherDetails(response) {
           
                 <div class="day-temp">
                 <div class='min-content'>
-                    <p class="min cel-temp">${Math.round(
-                      day.temp.min
-                    )} </p><span>&deg;</span>
+               <span>min</span>     <p class="min cel-temp">${Math.round(
+                 day.temp.min
+               )} </p><span>&deg;</span>
                     </div>
                     <div class='max-content'>
-                    <p class="max cel-temp">${Math.round(
-                      day.temp.max
-                    )} </p><span>&deg;</span>
+                <span>max</span>    <p class="max cel-temp">${Math.round(
+                  day.temp.max
+                )} </p><span>&deg;</span>
                     </div>
                 </div>
                 

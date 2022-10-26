@@ -347,6 +347,7 @@ even when i did 18rem border radius */
 }
 .action {
   font-weight: bold;
+  font-size: 2rem;
 }
 .action-icon {
   display: none;
@@ -355,8 +356,6 @@ even when i did 18rem border radius */
 }
 .time-info {
   display: flex;
-
-  justify-content: space-between;
 }
 .update {
   font-weight: bold;
@@ -390,7 +389,6 @@ h1 {
     font-size: 5vw;
   }
   .days {
-   
     justify-content: space-around;
   }
 }
@@ -446,16 +444,16 @@ h1 {
   .time-info {
     font-size: 0.8rem;
   }
+  .action {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 375px) {
   .time-info {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
   h1#city {
     font-size: 1.7rem;
-  }
-  .day img {
-    width: 3rem;
   }
 }
