@@ -25,13 +25,6 @@ let dateText = document.querySelector("#date-text");
 function changeTheme() {
   let Body = document.documentElement;
   Body.className = toggleBtn.checked ? "dark" : "light";
-  if (toggleBtn.checked) {
-    console.log("true");
-
-    document.body.style.backgroundImage = "url('./images/darkcloud.jpg')";
-  } else {
-    document.body.style.backgroundImage = "url('./images/lightcloud.jpg')";
-  }
 }
 toggleBtn.addEventListener("click", changeTheme);
 

@@ -10,6 +10,7 @@
 :root.light {
   --body-bg--color1: 112.1deg, rgba(77, 100, 174, 0.821) 11.4%;
   --body-bg--color2: rgb(171, 189, 248) 70.2%;
+  --body-background: url(./images/lightcloud.jpg);
   --deeppink: rgba(202, 103, 124, 0.83);
   --display-bg: var(--deeppink);
   /* --display-bg: #c27980; */
@@ -53,6 +54,7 @@
     var(--body-bg--color2)
   );
   --blur: 500rem;
+  --body-background: url(./images/darkcloud.jpg);
 
   --search-bg: rgba(244, 197, 235, 0.501);
   --days: #a17baa;
@@ -80,7 +82,7 @@ body {
   min-height: 100vh;
   width: 100%;
   /* background: var(--directio--bg); */
-  background-image: url(./images/lightcloud.jpg);
+  background-image: var(--body-background);
   background-size: cover;
   /* bg has to be fixed to allow for a continous flow of bg in the container */
   background-attachment: fixed;
@@ -188,14 +190,11 @@ RULES
 .theme {
   align-self: flex-start;
 }
-.search--label {
-  width: 50%;
-  height: 30%;
-}
+
 .search-display {
-  width: 100%;
+  width: 50%;
   background-color: var(--display-bg);
-  height: 100%;
+  height: 30%;
   border-radius: 2rem;
 
   box-shadow: inset -3px -3px 4px rgba(255, 255, 255, 0.239),
@@ -399,9 +398,7 @@ h1 {
   .toggle--input:checked ~ .toggle--fill::after {
     transform: translateX(calc(var(--width) / 2));
   }
-  .search--label {
-    width: 70%;
-  }
+ 
   .action-icon {
     width: 6rem;
   }
