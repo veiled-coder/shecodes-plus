@@ -43,6 +43,7 @@
     rgba(255, 102, 102, 0.44) 90%
   );
   --instructSpan: black;
+  --title: #d06283;
 }
 
 :root.dark {
@@ -77,6 +78,7 @@
     rgb(255, 214, 214) 67.1%
   );
   --instructSpan: aliceblue;
+  --title:rgb(244,219,251);
 }
 body {
   min-height: 100vh;
@@ -87,11 +89,18 @@ body {
   /* bg has to be fixed to allow for a continous flow of bg in the container */
   background-attachment: fixed;
   display: flex;
-  padding: 5% 0;
+  padding: 1% 0;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
   position: relative;
+}
+.title {
+  text-transform: uppercase;
+  font-family: var(--Acme);
+  font-size: 3rem;
+text-align: center;
+  color: var(--title);
 }
 .active {
   color: var(--active);
@@ -390,6 +399,9 @@ h1 {
   .days {
     justify-content: space-around;
   }
+  .title{
+    font-size: 2.5rem;
+  }
 }
 @media (max-width: 768px) {
   .toggle {
@@ -398,7 +410,7 @@ h1 {
   .toggle--input:checked ~ .toggle--fill::after {
     transform: translateX(calc(var(--width) / 2));
   }
- 
+
   .action-icon {
     width: 6rem;
   }
@@ -444,6 +456,9 @@ h1 {
   .action {
     font-size: 1.5rem;
   }
+  .title{
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 375px) {
@@ -452,5 +467,8 @@ h1 {
   }
   h1#city {
     font-size: 1.7rem;
+  }
+  .title{
+    font-size: 1.5rem;
   }
 }
