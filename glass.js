@@ -24,7 +24,7 @@ let dateText = document.querySelector("#date-text");
 //changing theme
 function changeTheme() {
   let Body = document.documentElement;
-  Body.className = toggleBtn.checked ? "dark" : "light";
+  Body.className = toggleBtn.checked ? "light" : "dark";
 }
 toggleBtn.addEventListener("click", changeTheme);
 

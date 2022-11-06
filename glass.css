@@ -6,7 +6,6 @@
   box-sizing: border-box;
 }
 
-:root,
 :root.light {
   --body-bg--color1: 112.1deg, rgba(77, 100, 174, 0.821) 11.4%;
   --body-bg--color2: rgb(171, 189, 248) 70.2%;
@@ -36,6 +35,7 @@
   --active: brown;
   --Acme: "Acme", "sans-serif";
   --h3: aliceblue;
+  --instruct: black;
   --stroke: black;
   --day-bg: radial-gradient(
     circle at 10% 20%,
@@ -46,6 +46,7 @@
   --title: #d06283;
 }
 
+:root,
 :root.dark {
   --display-bg: rgba(101, 27, 118, 0.926);
   --direction: to top;
@@ -56,7 +57,7 @@
   );
   --blur: 500rem;
   --body-background: url(./images/darkcloud.jpg);
-
+  --toggle-circle: #c67488;
   --search-bg: rgba(244, 197, 235, 0.501);
   --days: #a17baa;
   --box-shadow: rgba(25, 18, 25, 0.526);
@@ -78,7 +79,7 @@
     rgb(255, 214, 214) 67.1%
   );
   --instructSpan: aliceblue;
-  --title:rgb(244,219,251);
+  --title: rgb(244, 219, 251);
 }
 body {
   min-height: 100vh;
@@ -99,7 +100,7 @@ body {
   text-transform: uppercase;
   font-family: var(--Acme);
   font-size: 3rem;
-text-align: center;
+  text-align: center;
   color: var(--title);
 }
 .active {
@@ -136,6 +137,7 @@ h1 {
   font-style: italic;
   text-align: center;
   color: var(--instruct);
+  font-size: 1.5rem;
 }
 .instruction span {
   color: var(--instructSpan);
@@ -399,7 +401,7 @@ h1 {
   .days {
     justify-content: space-around;
   }
-  .title{
+  .title {
     font-size: 2.5rem;
   }
 }
@@ -456,7 +458,7 @@ h1 {
   .action {
     font-size: 1.5rem;
   }
-  .title{
+  .title {
     font-size: 2rem;
   }
 }
@@ -468,7 +470,7 @@ h1 {
   h1#city {
     font-size: 1.7rem;
   }
-  .title{
+  .title {
     font-size: 1.5rem;
   }
 }
