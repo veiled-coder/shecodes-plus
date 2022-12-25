@@ -12,7 +12,6 @@
   --body-background: url(./images/lightcloud.png);
   --deeppink: rgba(202, 103, 124, 0.83);
   --display-bg: var(--deeppink);
-  /* --display-bg: #c27980; */
   --direction--bg: linear-gradient(
     var(--body-bg--color1),
     var(--body-bg--color2)
@@ -45,7 +44,7 @@
   --instructSpan: black;
   --title: #d06283;
   --color-black-white: black;
-  --days: #c27a0f;
+  --days: #5c3904;
 }
 
 :root,
@@ -241,7 +240,7 @@ RULES
 .search-input {
   width: 50%;
   background-color: var(--display-bg);
-  height: 30%;
+  height: 5rem;
   border-radius: 2rem;
   box-shadow: inset -3px -3px 4px rgba(255, 255, 255, 0.239),
     inset 3px 3px 4px rgba(0, 0, 0, 0.492);
@@ -395,6 +394,10 @@ even when i did 18rem border radius */
   }
   .title {
     font-size: 2.5rem;
+  }
+  .search-input{
+    height: 2.5rem;
+    width: 70%;
   }
 }
 @media (max-width: 768px) {
