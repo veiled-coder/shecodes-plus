@@ -44,7 +44,7 @@
   --instructSpan: black;
   --title: #d06283;
   --color-black-white: black;
-  --days: #5c3904;
+  --forecast-box-border: #5c3904;
 }
 
 :root,
@@ -60,7 +60,7 @@
   --body-background: url(./images/darkcloud.png);
   --toggle-circle: #c67488;
   --search-bg: rgba(244, 197, 235, 0.501);
-  --days: #a17baa;
+  --forecast-box-border: #a17baa;
   --box-shadow: rgba(25, 18, 25, 0.526);
   --border: none;
   --placeholder: aliceblue;
@@ -313,7 +313,7 @@ even when i did 18rem border radius */
 }
 
 .day {
-  border: 2px solid var(--days);
+  border: 2px solid var(--forecast-box-border);
   background: var(--day-bg);
   text-align: center;
   display: flex;
