@@ -46,7 +46,6 @@
   --title: #d06283;
   --color-black-white: black;
   --days: #c27a0f;
-
 }
 
 :root,
@@ -87,16 +86,12 @@
 body {
   min-height: 100vh;
   width: 100%;
-  /* background: var(--directio--bg); */
   background-image: var(--body-background);
   background-size: cover;
-  /* bg has to be fixed to allow for a continous flow of bg in the container */
   background-attachment: fixed;
   background-position: top;
-
   display: flex;
   padding: 2% 0;
-  /* justify-content: space-arou; */
   flex-direction: column;
   align-items: center;
   position: relative;
