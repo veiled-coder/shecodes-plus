@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="a weather app that uses openweathermap api to show real-time weather
+    condition of thousands of cities around the world">
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
     <script src="https://kit.fontawesome.com/322a1124a5.js"></script>
     <link rel="stylesheet" href="glass.css">
-    <title>Document</title>
+    <title>Watweather App</title>
 </head>
 
 <body>
@@ -20,17 +22,17 @@
     <div class="container">
         <form class="display" id="form--container">
             <label for="Search" class="search--label"></label>
-            <input type="text" id="Search" class="search-display" value="" placeholder="enter a city 🏙️">
+            <input type="text" id="Search" class="search-input" value="" placeholder="enter a city 🏙️">
 
-            <div class="searches">
-                <button type="submit" class="search" id="search-btn">search</button>
-                <button class="search current-location" id="myLocation">
-                    <i class=" icon-currentLocation fa fa-map-marker" aria-hidden="true"></i>
+            <div class="search">
+                <button type="submit" class="search-btn" id="search-btn_id">search</button>
+                <button class="search-current-location" id="myLocation">
+                    <i class=" search-current-location_icon fa fa-map-marker" aria-hidden="true"></i>
                 </button>
             </div>
-            <label class="toggle" for="Toggle">
+            <label class="toggle" for="toggle-id">
                 <!-- any part of this label clicked on will check and uncheck the toggle--input -->
-                <input id="Toggle" type="checkbox" class="toggle--input">
+                <input id="toggle-id" type="checkbox" class="toggle--input">
                 <div class="toggle--fill"></div>
             </label>
         </form>
@@ -61,7 +63,7 @@
         </section>
 
         <!-- weather description -->
-        <section class="humidity-wind">
+        <section class="weather-components">
             <p class="humidity"></p>
             <p class="wind"></p>
         </section>
@@ -69,7 +71,8 @@
 
         <!-- weather for next 7 dayss -->
         <p class="instruction">click on the <span><i class="  fa fa-map-marker" aria-hidden="true"></i></span>
-            icon to get your current location's weather information and the <span>&#8457</span> to convert to fahrenheit</p>
+            icon to get your current location's weather information and the <span>&#8457</span> to convert to fahrenheit
+        </p>
         <h3 class="future"> Weather Forecast</h3>
         <section class="days">
 

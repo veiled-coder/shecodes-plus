@@ -1,4 +1,4 @@
-const toggleBtn = document.querySelector("#Toggle");
+const toggleBtn = document.querySelector("#toggle-id");
 let form = document.querySelector("#form--container");
 let searchDisplay = document.querySelector("#Search");
 let forecastDay = document.querySelector(".forecast--day");
@@ -8,7 +8,7 @@ let tempUnit = "metric";
 let apiKey = "8cac06f7ab6c10287cd06a316ff84a57";
 
 let h3 = document.querySelector("h3");
-let current = document.querySelector(".current-location");
+let current = document.querySelector(".search-current-location_icon");
 let humidity = document.querySelector(".humidity");
 let wind = document.querySelector(".wind");
 let action = document.querySelector(".action");
@@ -87,7 +87,6 @@ function weatherDetails(response) {
       let daysHtml = "";
 
       dailyForecast.forEach((day, index) => {
-        // console.log(day.weather[0].description);
         if (index > 0 && index < 7) {
           daysHtml =
             daysHtml +
@@ -216,15 +215,3 @@ function myResponse(location) {
     weatherDetails(weatherResponse);
   }
 }
-//time
-
-// let day = new Date();
-// let weekday = day.getDay();
-
-// let hour = day.getHours();
-
-// let min = day.getMinutes();
-// let dateText = document.querySelector("#date-text");
-// console.log(weekday);
-
-// getting current time of our search result;
