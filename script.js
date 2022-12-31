@@ -18,7 +18,7 @@ let fah = document.querySelector(".fah");
 let cel = document.querySelector(".cel");
 let dayName = document.querySelector(".dayName");
 let dateText = document.querySelector("#date-text");
-import axios from "axios";
+
 //changing theme
 function changeTheme() {
   let Body = document.documentElement;
