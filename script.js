@@ -18,6 +18,7 @@ let fah = document.querySelector(".fah");
 let cel = document.querySelector(".cel");
 let dayName = document.querySelector(".dayName");
 let dateText = document.querySelector("#date-text");
+let weatherDescription = document.querySelector(".weather-description");
 
 //changing theme
 function changeTheme() {
@@ -84,12 +85,13 @@ function weatherApiData(weatherApiData) {
       let daysHtml = "";
 
       sixDaysWeatherForecast.forEach((day, index) => {
+        console.log(day.weather[0].description);
         if (index > 0 && index < 7) {
           daysHtml =
             daysHtml +
             ` <div class="day day1">
                 <p class="forecast--day">${formatDay(day.dt)}</p>
-                       <p class="day--description">${
+                       <p class="forecast--day__description">${
                          day.weather[0].description
                        }<p/>
                  <img  src='http://openweathermap.org/img/wn/${
@@ -181,7 +183,7 @@ function weatherApiData(weatherApiData) {
   humidity.innerHTML = `Humidity: ${weatherApiData.data.main.humidity}%`;
   wind.innerHTML = `Wind: ${weatherApiData.data.wind.speed}km/hr`;
   let description = `${weatherApiData.data.weather[0].description}`;
-  action.innerHTML = description;
+  weatherDescription.innerHTML = description;
 
   iconWeather.setAttribute(
     "src",

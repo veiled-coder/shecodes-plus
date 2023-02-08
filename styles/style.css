@@ -329,7 +329,7 @@ even when i did 18rem border radius */
 .day img {
   width: 4rem;
 }
-.day--description {
+.forecast--day__description {
   font-style: italic;
   font-weight: lighter;
 }
